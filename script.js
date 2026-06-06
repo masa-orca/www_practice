@@ -1,6 +1,23 @@
-const now = new Date();
-const year = now.getFullYear();
-const footerText = document.querySelector('.site-footer p');
-if (footerText) {
-  footerText.textContent = `© ${year} LearnStep. 初学者向け学習サービス。`;
-}
+document.addEventListener("DOMContentLoaded", function () {
+  const faqButtons = document.querySelectorAll(".faq-item");
+
+  faqButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+      const answer = document.getElementById(targetId);
+      const isOpen = answer.classList.contains("open");
+
+      document.querySelectorAll(".faq-answer").forEach((item) => {
+        item.classList.remove("open");
+      });
+      document.querySelectorAll(".faq-icon").forEach((icon) => {
+        icon.textContent = "+";
+      });
+
+      if (!isOpen) {
+        answer.classList.add("open");
+        button.querySelector(".faq-icon").textContent = "−";
+      }
+    });
+  });
+});
